@@ -1,0 +1,467 @@
+const WEEDS = [
+  {
+    id: 1,
+    name: "Dandelion",
+    scientific: "Taraxacum officinale",
+    family: "Asteraceae",
+    invasive: false,
+    bloomTime: "March – November",
+    habitat: "Lawns, roadsides, disturbed soil, meadows",
+    imageUrl: "https://inaturalist-open-data.s3.amazonaws.com/photos/35280454/medium.jpg",
+    thumbnail: "https://inaturalist-open-data.s3.amazonaws.com/photos/35280454/medium.jpg",
+    description: "One of the most recognizable weeds in North America. Features a bright yellow composite flower atop a hollow stem, with deeply toothed leaves in a basal rosette. The familiar white seed puff disperses seeds by wind.",
+    identificationTips: [
+      "Leaves deeply lobed (\"lion's tooth\" shape), all growing from base",
+      "Single yellow flower per hollow stem; stem oozes milky sap when broken",
+      "Spherical white seed head with feathery parachutes",
+      "Taproot is thick, long, and difficult to remove completely"
+    ],
+    soilIndicator: "Indicates compacted, low-calcium soil. Heavy dandelion presence often means poor drainage and low pH. The deep taproot actually helps break up compacted layers and draws up minerals.",
+    uses: "Entirely edible — young leaves are nutritious salad greens (high in vitamins A, C, K). Flowers can be made into wine or fritters. Roots can be roasted as a coffee substitute. Used medicinally as a diuretic and liver tonic. Important early-season nectar source for pollinators.",
+    control: "Hand-pull before seed set, ensuring full taproot removal. A dandelion digger tool helps. Improve soil health and overseed lawn to reduce bare patches. Avoid herbicides — dandelions indicate a soil problem that reseeding fixes more permanently."
+  },
+  {
+    id: 2,
+    name: "Common Plantain",
+    scientific: "Plantago major",
+    family: "Plantaginaceae",
+    invasive: false,
+    bloomTime: "June – October",
+    habitat: "Compacted lawns, paths, driveways, disturbed ground",
+    imageUrl: "https://inaturalist-open-data.s3.amazonaws.com/photos/349979346/medium.jpeg",
+    thumbnail: "https://inaturalist-open-data.s3.amazonaws.com/photos/349979346/medium.jpeg",
+    description: "A low, flat rosette of broad oval leaves with prominent parallel veins. Sends up slim green flower spikes in summer. Thrives in the worst conditions — compacted paths and driveways are its preferred home.",
+    identificationTips: [
+      "Broad, oval leaves with 5–7 parallel veins running lengthwise",
+      "Petiole (leaf stem) has fibrous strings visible when snapped",
+      "Slender greenish flower spike, 3–6 inches tall",
+      "Hugs the ground in a flat rosette — survives mowing easily"
+    ],
+    soilIndicator: "A strong indicator of heavily compacted soil with poor drainage and low oxygen. If plantain is thriving in your lawn, the soil is packed too hard for grass to compete. Core aeration is the real fix.",
+    uses: "Leaves are edible when young; older leaves become tough and bitter. Widely used in herbalism — crushed fresh leaves are a traditional remedy for insect stings, minor cuts, and skin irritation. Seeds are mucilaginous and have been used similarly to psyllium.",
+    control: "Hand-pull or use a weeding tool to get the fibrous root. The permanent fix is soil aeration — once compaction is relieved, grass outcompetes plantain naturally."
+  },
+  {
+    id: 3,
+    name: "Crabgrass",
+    scientific: "Digitaria sanguinalis",
+    family: "Poaceae",
+    invasive: false,
+    bloomTime: "July – October (seeds)",
+    habitat: "Lawns, garden edges, sidewalk cracks, thin turf",
+    imageUrl: "https://static.inaturalist.org/photos/13055518/medium.jpg",
+    thumbnail: "https://static.inaturalist.org/photos/13055518/medium.jpg",
+    description: "A warm-season annual grass that germinates in late spring and sprawls outward in a crab-like, star-shaped pattern. Dies with first frost but leaves behind thousands of seeds. One of the most prolific seed producers of any lawn weed.",
+    identificationTips: [
+      "Stems radiate outward from a central point, lying flat on ground",
+      "Leaf blades are wider than typical lawn grass, with a prominent midrib",
+      "Stems root at nodes where they touch soil",
+      "Finger-like seed heads, 3–9 per stem, appearing in late summer"
+    ],
+    soilIndicator: "Indicates thin, bare, or weakened turf — crabgrass seeds need exposed soil and warmth to germinate. A lush, dense lawn is the best long-term defense. Also thrives in low-nitrogen soils where grass is struggling.",
+    uses: "Historically, seeds were ground into flour by Native American and African communities. Nutritious grain but impractical to harvest at home. No significant medicinal uses.",
+    control: "Pre-emergent herbicide (or corn gluten meal organically) applied in early spring before soil reaches 55°F. Pull young plants before they set seed. Thick, healthy lawn is the best prevention — overseed thin spots every fall."
+  },
+  {
+    id: 4,
+    name: "Chickweed",
+    scientific: "Stellaria media",
+    family: "Caryophyllaceae",
+    invasive: false,
+    bloomTime: "March – May, September – November",
+    habitat: "Moist garden beds, lawns, disturbed soil, partial shade",
+    imageUrl: "https://inaturalist-open-data.s3.amazonaws.com/photos/116412091/medium.jpeg",
+    thumbnail: "https://inaturalist-open-data.s3.amazonaws.com/photos/116412091/medium.jpeg",
+    description: "A delicate, low-growing annual with small oval leaves and tiny white star-shaped flowers. Loves cool, moist conditions and is often the first weed to appear in spring and the last to fade in fall. Forms dense mats that can smother other plants.",
+    identificationTips: [
+      "Tiny white flowers with 5 deeply notched petals (look like 10 petals)",
+      "Single line of fine hairs running along one side of the stem only",
+      "Oval leaves with a pointed tip; lower leaves on short petioles",
+      "Forms soft, tangled mats; easy to pull up in clumps"
+    ],
+    soilIndicator: "Indicates fertile, moist soil — actually a positive sign. Abundant chickweed often means good organic content and adequate moisture. It thrives where conditions are right for many garden plants too.",
+    uses: "Fully edible raw or lightly cooked — mild, pleasant flavor. High in vitamins C and B. Great in salads or wilted like spinach. Traditional remedy for itchy skin conditions; juice or poultice applied topically. Excellent forage for backyard chickens (hence the name).",
+    control: "Easy to pull by hand before flowering. Remove before it sets seed — it produces seed prolifically. A layer of mulch suppresses it effectively in beds. Accepts cool temperatures, so spring and fall are prime control windows."
+  },
+  {
+    id: 5,
+    name: "Ground Ivy",
+    scientific: "Glechoma hederacea",
+    family: "Lamiaceae",
+    invasive: false,
+    bloomTime: "April – June",
+    habitat: "Shaded lawns, moist areas, woodland edges, stream banks",
+    imageUrl: "https://inaturalist-open-data.s3.amazonaws.com/photos/280941528/medium.jpg",
+    thumbnail: "https://inaturalist-open-data.s3.amazonaws.com/photos/280941528/medium.jpg",
+    description: "A creeping mint-family plant with scallop-edged, kidney-shaped leaves and small violet-blue flowers. Spreads aggressively by long stolons that root at nodes. The entire plant smells strongly of mint when crushed.",
+    identificationTips: [
+      "Rounded, scallop-edged leaves with a heart-shaped or kidney-shaped base",
+      "Square stems (characteristic of the mint family)",
+      "Small blue-purple tubular flowers in leaf axils",
+      "Strong, distinctive minty/musty smell when leaves are crushed",
+      "Spreads via long runners that root at nodes"
+    ],
+    soilIndicator: "Indicates poor drainage, compacted soil, and shade — conditions where lawn grass cannot compete. Common under trees. Improving drainage and overseeding with shade-tolerant grass varieties can reduce its spread.",
+    uses: "Historically used as a brewing herb (before hops) to clarify and preserve ale. Young leaves are edible — used in salads and soups. Traditional herbal uses include as an expectorant for coughs. Attractive to early-season bees.",
+    control: "Difficult to eradicate once established due to rooting stolons. Hand-pull carefully, removing all stem fragments. Improves with repeated mowing. Broadleaf herbicides work but may require multiple applications. Improving shade and drainage is the long-term solution."
+  },
+  {
+    id: 6,
+    name: "Purslane",
+    scientific: "Portulaca oleracea",
+    family: "Portulacaceae",
+    invasive: false,
+    bloomTime: "June – September",
+    habitat: "Garden beds, vegetable gardens, sidewalk cracks, disturbed soil",
+    imageUrl: "https://inaturalist-open-data.s3.amazonaws.com/photos/94112307/medium.jpeg",
+    thumbnail: "https://inaturalist-open-data.s3.amazonaws.com/photos/94112307/medium.jpeg",
+    description: "A fleshy, succulent annual with thick, reddish stems and paddle-shaped leaves. Spreads in a prostrate mat and produces tiny yellow flowers. Incredibly drought tolerant — a pulled plant can continue to ripen seeds for days.",
+    identificationTips: [
+      "Thick, rubbery, paddle-shaped leaves with a glossy surface",
+      "Reddish-purple stems, sprawling along the ground",
+      "Tiny yellow 5-petaled flowers that open only in morning sunlight",
+      "Succulent texture — stems snap crisply like a water-filled tube"
+    ],
+    soilIndicator: "Thrives in dry, sandy, low-fertility soil with good drainage. Its presence indicates your soil may be low in phosphorus. Ironically, purslane itself is one of the richest plant sources of omega-3 fatty acids.",
+    uses: "Considered a gourmet edible in Mediterranean cooking. Mild, slightly tangy flavor with a satisfying crunch. Excellent in salads, stir-fries, or pickled. Extraordinarily nutritious — highest known plant source of omega-3 fatty acids, plus vitamins A, C, and magnesium.",
+    control: "Pull before flowering and remove from garden — do not compost, as cut plants re-root readily. Bag and dispose. Mulch heavily to prevent germination. Check soil moisture; overwatering encourages it in garden beds."
+  },
+  {
+    id: 7,
+    name: "Lambsquarters",
+    scientific: "Chenopodium album",
+    family: "Amaranthaceae",
+    invasive: false,
+    bloomTime: "July – October",
+    habitat: "Gardens, compost piles, disturbed soil, field edges",
+    imageUrl: "https://inaturalist-open-data.s3.amazonaws.com/photos/234299048/medium.jpeg",
+    thumbnail: "https://inaturalist-open-data.s3.amazonaws.com/photos/234299048/medium.jpeg",
+    description: "An upright annual that can reach 6 feet tall. Young leaves have a distinctive dusty white or silvery coating, especially on the underside. Closely related to quinoa and spinach — and just as edible.",
+    identificationTips: [
+      "Leaves have a mealy white or silvery powder on the underside (especially young leaves)",
+      "Leaf shape varies: lower leaves are diamond or goose-foot shaped with toothed edges",
+      "Stems often have reddish or greenish stripes",
+      "Dense clusters of tiny green flowers at stem tips"
+    ],
+    soilIndicator: "A nutrient accumulator — indicates nitrogen-rich, fertile soil with good organic matter. Lambsquarters is often most prolific in vegetable gardens and compost areas precisely because the soil is so good.",
+    uses: "One of the most nutritious edible weeds available. Young leaves can be eaten raw or cooked like spinach — superior nutritional profile (high in protein, calcium, vitamins A and C). Seeds are edible and related to quinoa. A food crop in many cultures historically.",
+    control: "Uproot young plants before they set seed — one plant can produce 75,000 seeds. Pull when small; older plants develop a woody taproot. Excellent compost material if pulled before flowering."
+  },
+  {
+    id: 8,
+    name: "White Clover",
+    scientific: "Trifolium repens",
+    family: "Fabaceae",
+    invasive: false,
+    bloomTime: "May – October",
+    habitat: "Lawns, roadsides, meadows, disturbed areas",
+    imageUrl: "https://inaturalist-open-data.s3.amazonaws.com/photos/507060667/medium.jpg",
+    thumbnail: "https://inaturalist-open-data.s3.amazonaws.com/photos/507060667/medium.jpg",
+    description: "A creeping perennial with three-part (trifoliate) leaves, each leaflet often featuring a pale chevron mark. White pom-pom flowers are beloved by bees. Spreads by stolons and fixes atmospheric nitrogen into the soil.",
+    identificationTips: [
+      "Three oval leaflets per leaf, often with a pale V or crescent marking",
+      "Round white flower heads, ~¾ inch diameter, turning brown with age",
+      "Creeping stems root at nodes, forming a mat",
+      "Leaves fold slightly at night"
+    ],
+    soilIndicator: "Indicates low nitrogen soil — clover fixes its own nitrogen from the air via root bacteria. Its presence is the lawn's way of self-fertilizing. Many gardeners now intentionally include clover in lawn mixes for this reason.",
+    uses: "Flowers are edible and sweet — excellent in salads or dried for tea. Important nectar source for honeybees (clover honey). Young leaves edible raw or cooked. Seeds can be sprouted. Valuable green manure/cover crop for fixing nitrogen.",
+    control: "Often best left alone — it improves soil and supports pollinators. If removal is desired, hand-pull clumps and maintain a thick, fertilized lawn. Avoid nitrogen-deficient soil, which is the root cause of clover invasion."
+  },
+  {
+    id: 9,
+    name: "Common Ragweed",
+    scientific: "Ambrosia artemisiifolia",
+    family: "Asteraceae",
+    invasive: false,
+    bloomTime: "July – October",
+    habitat: "Roadsides, disturbed soil, fields, garden edges",
+    imageUrl: "https://inaturalist-open-data.s3.amazonaws.com/photos/382193593/medium.jpeg",
+    thumbnail: "https://inaturalist-open-data.s3.amazonaws.com/photos/382193593/medium.jpeg",
+    description: "An annual with deeply divided, feathery leaves that resemble carrot or fern foliage. The primary cause of late-summer hayfever in the Northeast — one plant produces over a billion pollen grains. Inconspicuous greenish flowers are wind-pollinated.",
+    identificationTips: [
+      "Leaves are finely divided (pinnate), resembling fern fronds or carrot tops",
+      "Stems are hairy and often reddish-purple at the base",
+      "Small greenish-yellow flower spikes at stem tips (male flowers)",
+      "Female flowers are tiny and hidden in leaf axils below"
+    ],
+    soilIndicator: "Thrives in disturbed, poor, low-organic soil — a pioneer species. Its presence signals bare, compacted ground or areas of recent soil disturbance. Establishing perennial groundcover is the best long-term suppressor.",
+    uses: "No significant culinary uses. Historically used medicinally by some Native American groups for topical skin conditions. Ecologically important as a seed food for birds in fall and winter.",
+    control: "Pull or cut before flowering — this is critical for both seed and pollen reduction. Cut plants at ground level in June/July prevent seed set even without full removal. Dense plantings of competitive plants are the best long-term prevention. Allergenic — wear a mask and gloves when handling."
+  },
+  {
+    id: 10,
+    name: "Garlic Mustard",
+    scientific: "Alliaria petiolata",
+    family: "Brassicaceae",
+    invasive: true,
+    bloomTime: "April – June",
+    habitat: "Woodland edges, shaded areas, stream banks, disturbed forest understory",
+    imageUrl: "https://static.inaturalist.org/photos/189247854/medium.jpg",
+    thumbnail: "https://static.inaturalist.org/photos/189247854/medium.jpg",
+    description: "A biennial that forms a low rosette of kidney-shaped leaves in year one, then bolts to 3 feet with white four-petaled flowers in year two. Smells strongly of garlic when leaves are crushed. One of the most damaging invasive plants in Connecticut woodlands.",
+    identificationTips: [
+      "Distinctive garlic odor when leaves are crushed — strong identifier",
+      "First-year rosette: round, scallop-edged leaves; second-year plant shoots up tall",
+      "Small white 4-petaled flowers in spring",
+      "Long, narrow seed pods (siliques) appear after flowering",
+      "Leaves are bright green with triangular shape on flowering plants"
+    ],
+    soilIndicator: "Releases allelopathic chemicals that inhibit mycorrhizal fungi — the fungi that native trees depend on. Garlic mustard actually degrades soil ecology over time. Its spread in CT forests is a serious ecological threat to native understory plants and tree seedlings.",
+    uses: "Edible — young leaves have a garlicky, mustardy flavor and are used in European cooking (pesto, salads, soups). Seeds can be used like mustard. However, given its invasiveness, harvest is encouraged as a control measure. High in vitamins A and C.",
+    control: "Pull before seed set in spring — critical, as seed pods explode and scatter seed. Remove by the roots (biennial taproot). Bag all plant material; do not compost. Revisit the same area for 3–5 years as seeds remain viable in soil. This is one case where aggressive, persistent removal is ecologically important."
+  },
+  {
+    id: 11,
+    name: "Japanese Knotweed",
+    scientific: "Reynoutria japonica",
+    family: "Polygonaceae",
+    invasive: true,
+    bloomTime: "August – September",
+    habitat: "Stream banks, roadsides, disturbed areas, woodland edges",
+    imageUrl: "https://inaturalist-open-data.s3.amazonaws.com/photos/74418856/medium.jpg",
+    thumbnail: "https://inaturalist-open-data.s3.amazonaws.com/photos/74418856/medium.jpg",
+    description: "One of the most aggressive invasive plants in Connecticut. Hollow, bamboo-like stems reach 6–10 feet tall. Spreads via an extensive underground rhizome network — even a fragment the size of a fingernail can grow a new plant. Extremely difficult to eradicate.",
+    identificationTips: [
+      "Hollow stems with distinct nodes; look like bamboo but are not",
+      "Large, shovel-shaped leaves with a flat or slightly indented base",
+      "Stems are green with reddish-purple speckles when young",
+      "Creamy white flower clusters in late summer",
+      "Dies back to the ground each winter but returns vigorously from rhizomes"
+    ],
+    soilIndicator: "Rapidly colonizes disturbed, moist soils — especially stream banks and floodplains. Its rhizomes can cause significant erosion and bank destabilization. Found along virtually every major CT river corridor. Indicates a disturbed or flood-prone area.",
+    uses: "Young spring shoots (under 8 inches) are edible — taste similar to rhubarb, used in pies, jams, and savory dishes. High in resveratrol (the antioxidant found in red wine). Some herbalists use root preparations. However, harvesting young shoots can inadvertently spread fragments.",
+    control: "Cutting alone is ineffective — stimulates rhizome spread. Most effective: cut in late summer when the plant is moving energy to roots, then apply herbicide to cut stems. Repeat for 3–5+ years. Covering with heavy-duty black plastic for 2+ growing seasons can exhaust rhizomes. Never compost or move soil from infested areas. This is a long-term project — do not expect quick results."
+  },
+  {
+    id: 12,
+    name: "Mugwort",
+    scientific: "Artemisia vulgaris",
+    family: "Asteraceae",
+    invasive: true,
+    bloomTime: "July – October",
+    habitat: "Roadsides, disturbed fields, stream banks, garden edges",
+    imageUrl: "https://inaturalist-open-data.s3.amazonaws.com/photos/46355424/medium.jpeg",
+    thumbnail: "https://inaturalist-open-data.s3.amazonaws.com/photos/46355424/medium.jpeg",
+    description: "A tall, aromatic perennial that spreads aggressively by rhizomes and seed. Leaves are dark green on top and silver-white and woolly underneath — a distinctive two-toned appearance. The entire plant has a strong sage-like smell.",
+    identificationTips: [
+      "Leaves are deeply lobed on top surface, dark green",
+      "Underside of leaves is distinctly silver-white and fuzzy/woolly",
+      "Strong sage or chrysanthemum-like smell when crushed",
+      "Stems become woody and purplish toward base in summer",
+      "Tiny reddish-brown flower heads in branched clusters"
+    ],
+    soilIndicator: "Thrives in disturbed, nitrogen-rich, and somewhat moist soils. Common along roadsides and disturbed areas. Its presence on the CT invasive list means active management is encouraged. Spreads readily into gardens from adjacent disturbed areas.",
+    uses: "One of humanity's oldest medicinal herbs — used for centuries in Traditional Chinese Medicine (moxa/moxibustion), European herbalism, and cooking. Young leaves used in Korean and Japanese cuisine (dduk, mochi). Teas and tinctures traditionally used for digestive complaints and as a sleep aid. Burning dried leaves (smudging) is a widespread traditional practice.",
+    control: "Persistent cutting at ground level weakens plants over time — mow or cut monthly during growing season. Digging out rhizomes is necessary for eradication. Rhizomes break easily, so thorough removal is essential. Smothering with cardboard and deep mulch can work in garden beds. Bag all material — do not compost."
+  },
+  {
+    id: 13,
+    name: "Field Bindweed",
+    scientific: "Convolvulus arvensis",
+    family: "Convolvulaceae",
+    invasive: false,
+    bloomTime: "June – October",
+    habitat: "Gardens, roadsides, cultivated fields, disturbed soil",
+    imageUrl: "https://inaturalist-open-data.s3.amazonaws.com/photos/209325684/medium.jpg",
+    thumbnail: "https://inaturalist-open-data.s3.amazonaws.com/photos/209325684/medium.jpg",
+    description: "A twining perennial vine with arrow-shaped leaves and beautiful white or pink funnel-shaped flowers. Despite its pretty flowers, bindweed is a persistent garden pest with a deep root system that can reach 20 feet underground. Related to morning glory.",
+    identificationTips: [
+      "Arrow-shaped or spear-shaped leaves with backward-pointing lobes at base",
+      "Twining habit — wraps clockwise around neighboring plants and stakes",
+      "Flowers are white or pale pink, funnel-shaped (1 inch), similar to morning glory",
+      "Two small bracts on the flower stem, well below the flower (vs. hedge bindweed which has them just below)"
+    ],
+    soilIndicator: "Indicates dry, poorly structured, or disturbed soil. Extremely deep roots allow it to survive drought and cultivation. Its persistence often reflects subsoil problems that prevent competing plants from establishing deep roots.",
+    uses: "No significant culinary uses; contains compounds that can cause digestive upset. Some traditional medicinal uses as a purgative in herbalism. The flowers are genuinely beautiful and attract pollinators, but this does not offset its invasive garden behavior.",
+    control: "Consistent cutting at ground level repeatedly through the growing season gradually exhausts root reserves — this takes years. Do not till or cultivate infested soil, as root fragments generate new plants. Mulching can help but roots penetrate deep. Patience is essential — this is a multi-year effort."
+  },
+  {
+    id: 14,
+    name: "Spotted Spurge",
+    scientific: "Euphorbia maculata",
+    family: "Euphorbiaceae",
+    invasive: false,
+    bloomTime: "June – October",
+    habitat: "Lawns, driveways, sidewalk cracks, sandy or gravelly areas",
+    imageUrl: "https://inaturalist-open-data.s3.amazonaws.com/photos/521409024/medium.jpg",
+    thumbnail: "https://inaturalist-open-data.s3.amazonaws.com/photos/521409024/medium.jpg",
+    description: "A low-growing summer annual that forms a dense, flat mat. Each tiny oval leaf typically bears a distinctive reddish-purple blotch in the center. Stems ooze a milky white sap when broken — this sap is irritating to skin and toxic if ingested.",
+    identificationTips: [
+      "Leaves are tiny, oval, with a reddish-purple spot or blotch in the center",
+      "Stems radiate outward from a central taproot in a flat mat",
+      "Milky white sap oozes from any broken stem — distinctive and important ID feature",
+      "Stems are often reddish; tiny pink-tinged flowers are nearly microscopic",
+      "Entire plant stays flat on the ground"
+    ],
+    soilIndicator: "Indicates compacted, dry, low-fertility soil — thrives in the conditions that most plants cannot tolerate (sidewalk cracks, gravel driveways, thin lawns). Its presence suggests the turf or groundcover is too thin to outcompete it.",
+    uses: "No culinary uses — the milky sap (latex) is toxic and a skin irritant. Some historical medicinal uses in traditional medicine but not recommended without expert guidance due to toxicity. Wash hands after handling.",
+    control: "Pull by hand before seed set — wear gloves to avoid sap contact. Seeds germinate throughout the growing season, so check repeatedly. Thick turf prevents establishment. Mulch in beds. A pre-emergent herbicide in spring can help in areas of persistent infestation."
+  },
+  {
+    id: 15,
+    name: "Pokeweed",
+    scientific: "Phytolacca americana",
+    family: "Phytolaccaceae",
+    invasive: false,
+    bloomTime: "July – September",
+    habitat: "Woodland edges, fence rows, disturbed areas, rich soil",
+    imageUrl: "https://inaturalist-open-data.s3.amazonaws.com/photos/164206478/medium.jpeg",
+    thumbnail: "https://inaturalist-open-data.s3.amazonaws.com/photos/164206478/medium.jpeg",
+    description: "A bold, native perennial that can reach 10 feet tall with striking magenta-red stems and large dark berries. All parts of the mature plant are toxic — roots especially so. However, young spring shoots have been eaten as a traditional Appalachian food when properly prepared.",
+    identificationTips: [
+      "Massive plant — can grow 6–10 feet in a single season",
+      "Stems turn bright magenta or deep red by midsummer — very striking",
+      "Large, simple leaves up to 12 inches long",
+      "White to pale pink flower racemes in summer → dark purple-black berry clusters in fall",
+      "Large perennial taproot that persists year after year"
+    ],
+    soilIndicator: "Indicates fertile, moist, disturbed soil rich in organic matter. Often appears in spots where soil has been recently enriched — near old compost piles, manure heaps, or disturbed forest edges. Birds eat the berries and deposit seeds in nutrient-rich locations.",
+    uses: "WARNING: Mature plants are significantly toxic — roots most so. Young spring shoots (under 6 inches, before any red color) have been traditionally eaten after boiling in multiple changes of water (poke sallet). Berries are toxic to humans but critical wildlife food for many bird species. Historically used as a red ink and dye. Not recommended for home use without expert knowledge.",
+    control: "Dig out the large taproot entirely — cutting the top encourages regrowth from the root. Roots can be enormous (turnip-sized) in older plants. Wear gloves as the sap can cause skin irritation and be absorbed. Young plants are easiest to remove. Birds will continue to reseed it if berry-producing plants are nearby."
+  },
+  {
+    id: 16,
+    name: "Queen Anne's Lace",
+    scientific: "Daucus carota",
+    family: "Apiaceae",
+    invasive: false,
+    bloomTime: "June – August",
+    habitat: "Roadsides, meadows, old fields, disturbed areas",
+    imageUrl: "https://inaturalist-open-data.s3.amazonaws.com/photos/7663971/medium.jpeg",
+    thumbnail: "https://inaturalist-open-data.s3.amazonaws.com/photos/7663971/medium.jpeg",
+    description: "The wild ancestor of the cultivated carrot. A biennial with feathery, carrot-like leaves and large flat-topped clusters of tiny white flowers, usually with one dark purple floret at the center. The root smells unmistakably of carrot.",
+    identificationTips: [
+      "Flat-topped white flower cluster (umbel), often with single dark purple floret in center",
+      "Flower head curls inward like a bird's nest when going to seed",
+      "Leaves are finely divided and fernlike — similar to carrot tops",
+      "Root smells strongly of carrot when scratched",
+      "Stems are hairy; look-alike poison hemlock has smooth, purple-blotched stems"
+    ],
+    soilIndicator: "Indicates dry, low-fertility, well-drained soil — often colonizes poor, calcium-deficient ground. A biennial that thrives where perennial grasses are thin or absent. Common in disturbed and abandoned fields throughout CT.",
+    uses: "Root of first-year plants is edible (small wild carrots). Flowers and seeds edible in small amounts — seeds used as a spice historically. IMPORTANT CAUTION: Closely resembles poison hemlock and poison parsley — always verify ID by smelling the root (carrot = safe). Seeds have been used in folk medicine as a contraceptive — not recommended.",
+    control: "Pull or cut before seed set. The hollow stem can be cut at the base in the first year to prevent the plant from flowering the following year. Regular mowing of meadow areas keeps populations in check. Establishing competitive perennial vegetation is the long-term solution."
+  },
+  {
+    id: 17,
+    name: "Goldenrod",
+    scientific: "Solidago canadensis",
+    family: "Asteraceae",
+    invasive: false,
+    bloomTime: "August – October",
+    habitat: "Meadows, roadsides, old fields, woodland edges",
+    imageUrl: "https://inaturalist-open-data.s3.amazonaws.com/photos/87573048/medium.jpg",
+    thumbnail: "https://inaturalist-open-data.s3.amazonaws.com/photos/87573048/medium.jpg",
+    description: "A native perennial with tall stems topped by arching plumes of bright yellow flowers in late summer. Often blamed for hayfever, but goldenrod pollen is too heavy and sticky to be windborne — ragweed (which blooms at the same time) is the actual culprit.",
+    identificationTips: [
+      "Tall unbranched stems, 2–5 feet, with lance-shaped leaves",
+      "Dense arching plumes of tiny bright yellow flowers at the top",
+      "Leaves are alternate, lance-shaped with toothed edges",
+      "Stems and leaves may have galls (round swellings) caused by insects",
+      "Spreads by both rhizomes and wind-dispersed seeds"
+    ],
+    soilIndicator: "Indicates dry to medium-dry, low-fertility soil. A native pioneer species that helps stabilize disturbed soil and transition bare areas toward woodland. Its presence in fields often indicates land that was previously cultivated and is reverting to natural succession.",
+    uses: "Excellent native pollinator plant — supports over 100 species of bees, butterflies, and beetles. Young leaves and flowers are edible and can be made into tea (pleasant, mild flavor). Used medicinally as a diuretic and anti-inflammatory. One of CT's most ecologically valuable fall-blooming natives.",
+    control: "Often best left alone — a native plant with high ecological value. If controlling spread in a garden, cut back in spring before growth begins to reduce vigor. Division every few years keeps clumps in check. Consider letting goldenrod naturalize in meadow areas."
+  },
+  {
+    id: 18,
+    name: "Multiflora Rose",
+    scientific: "Rosa multiflora",
+    family: "Rosaceae",
+    invasive: true,
+    bloomTime: "May – June",
+    habitat: "Woodland edges, fence rows, old fields, disturbed areas",
+    imageUrl: "https://inaturalist-open-data.s3.amazonaws.com/photos/252786276/medium.jpg",
+    thumbnail: "https://inaturalist-open-data.s3.amazonaws.com/photos/252786276/medium.jpg",
+    description: "An arching shrub rose with clusters of small white flowers and masses of small red hips in fall. Introduced from Asia and widely planted for erosion control and wildlife habitat — now one of Connecticut's most problematic invasive shrubs, forming impenetrable thickets.",
+    identificationTips: [
+      "Arching canes up to 15 feet, armed with curved thorns",
+      "Clusters of small white 5-petaled roses with yellow centers (May–June)",
+      "Small red rose hips in dense clusters persist through winter",
+      "Leaves are compound with 7–9 leaflets; stipules at base are fringed/comb-like — key ID feature",
+      "Forms large, thorny, impenetrable mounds over time"
+    ],
+    soilIndicator: "Tolerates a very wide range of soil conditions — this adaptability is part of what makes it so invasive. Thrives in full sun to partial shade, in wet or dry conditions. Birds eat the hips and distribute seeds widely.",
+    uses: "Rose hips are edible and high in vitamin C — can be made into jams, syrups, or teas (remove seeds). Flowers are edible and fragrant. However, given its invasiveness in CT, foraging should be paired with removal. Good source of fall/winter food for many bird species.",
+    control: "Cut at ground level and treat cut stump immediately with concentrated herbicide to prevent re-sprouting. Cutting alone stimulates vigorous regrowth. Repeat cutting over 2–3 years can eventually exhaust root reserves. Wear heavy gloves and long sleeves — thorns are serious. Goats are an effective biological control on large infestations."
+  },
+  {
+    id: 19,
+    name: "Bittersweet Nightshade",
+    scientific: "Solanum dulcamara",
+    family: "Solanaceae",
+    invasive: false,
+    bloomTime: "May – September",
+    habitat: "Woodland edges, moist thickets, gardens, disturbed areas",
+    imageUrl: "https://inaturalist-open-data.s3.amazonaws.com/photos/70860715/medium.jpeg",
+    thumbnail: "https://inaturalist-open-data.s3.amazonaws.com/photos/70860715/medium.jpeg",
+    description: "A scrambling woody vine with striking star-shaped purple flowers with reflexed petals and a yellow beak of stamens — identical in structure to tomato flowers, to which it's related. Berries ripen from green to yellow to red. All parts are toxic, especially unripe berries.",
+    identificationTips: [
+      "Purple star-shaped flowers with strongly reflexed petals and a yellow 'beak' of fused stamens",
+      "Berries in clusters, ripening green → yellow → orange → red (multiple stages on one cluster)",
+      "Leaves are variable: some have ear-like lobes at the base",
+      "Woody climbing stems — scrambles through shrubs and fences",
+      "Unpleasant smell when leaves are crushed"
+    ],
+    soilIndicator: "Thrives in moist, shaded, or partially shaded areas with rich organic matter. Common at woodland edges and near water. Not a strong soil indicator but signals a moist, sheltered microhabitat.",
+    uses: "All parts toxic — do NOT eat berries (children find the red berries attractive; keep away). No culinary use. Has historical medicinal uses in herbal medicine but is not used in modern practice due to toxicity. The berries are eaten by birds (who are not affected by the toxins) and seeds are spread widely.",
+    control: "Pull or cut to the base; wear gloves as the sap can irritate skin. Remove before berries ripen to prevent bird-mediated spread. The woody rootstock will resprout — repeat removal is needed. Reduce moist shaded habitats at woodland edges if possible."
+  },
+  {
+    id: 20,
+    name: "Bull Thistle",
+    scientific: "Cirsium vulgare",
+    family: "Asteraceae",
+    invasive: false,
+    bloomTime: "July – September",
+    habitat: "Roadsides, disturbed fields, pastures, meadow edges",
+    imageUrl: "https://inaturalist-open-data.s3.amazonaws.com/photos/306770747/medium.jpeg",
+    thumbnail: "https://inaturalist-open-data.s3.amazonaws.com/photos/306770747/medium.jpeg",
+    description: "A biennial thistle that forms a rosette of spiny, deeply lobed leaves in year one, then bolts to 6 feet in year two with showy purple flower heads. Stems have characteristic spiny wings running along their length. A magnet for goldfinches in fall.",
+    identificationTips: [
+      "Stems have spiny wings running along their length — key ID feature",
+      "Leaves are deeply lobed with very sharp spines at tips; white-woolly on underside",
+      "Flower heads are large (1–2 inches), bright purple-pink",
+      "Bracts under the flower head end in a stiff, spreading spine",
+      "Rosette leaves in year one; tall flowering stalk in year two"
+    ],
+    soilIndicator: "Indicates disturbed, compacted, or overgrazed soil. A pioneer species that colonizes bare, poor-quality ground. Its long taproot helps break up compacted layers. Presence suggests a need for better groundcover establishment.",
+    uses: "Flower heads, young leaves (spines removed), and stalks are edible. Peeled stems have been eaten like celery. Young leaves can be cooked as a vegetable after spine removal. An important nectar source for bumblebees, butterflies, and other pollinators. Seeds are critical late-season food for goldfinches and other finches.",
+    control: "Cut at the base before flowering in year two — this prevents seed set. Cut below the crown to kill the plant. Mowing the rosette in year one reduces vigor but rarely kills it. Digging out the taproot in year one is most effective. Do not allow to flower and set seed — one plant can produce 4,000+ seeds."
+  }
+];
+
+const FOLDER_NAMES = {
+  1:  "dandelion",
+  2:  "common-plantain",
+  3:  "crabgrass",
+  4:  "chickweed",
+  5:  "ground-ivy",
+  6:  "purslane",
+  7:  "lambsquarters",
+  8:  "white-clover",
+  9:  "common-ragweed",
+  10: "garlic-mustard",
+  11: "japanese-knotweed",
+  12: "mugwort",
+  13: "field-bindweed",
+  14: "spotted-spurge",
+  15: "pokeweed",
+  16: "queen-annes-lace",
+  17: "goldenrod",
+  18: "multiflora-rose",
+  19: "bittersweet-nightshade",
+  20: "bull-thistle",
+};
+
+WEEDS.forEach(w => {
+  const folder = `photos/${FOLDER_NAMES[w.id]}`;
+  w.photos = [
+    { type: "whole",        label: "Whole Plant",            url: `${folder}/1.jpg` },
+    { type: "flower",       label: "Flower Close-up",        url: `${folder}/2.jpg` },
+    { type: "leaf",         label: "Leaf Close-up",          url: `${folder}/3.jpg` },
+    { type: "habitat",      label: "In Habitat",             url: `${folder}/4.jpg` },
+    { type: "illustration", label: "Botanical Illustration",  url: `${folder}/5.jpg` },
+  ];
+});

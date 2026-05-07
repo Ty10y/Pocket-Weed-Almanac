@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#2d4a2d">
+  <title>Pocket Weed Almanac · Connecticut</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ── Header ─────────────────────────────────────────────── -->
+  <header class="app-header">
+    <h1>🌿 Pocket Weed Almanac</h1>
+    <p>Connecticut · 20 Common Backyard Weeds</p>
+  </header>
+
+  <!-- ── Search ─────────────────────────────────────────────── -->
+  <div class="search-wrap">
+    <input
+      id="search"
+      class="search-input"
+      type="search"
+      placeholder="Search weeds…"
+      autocomplete="off"
+      autocorrect="off"
+      autocapitalize="off"
+      spellcheck="false"
+    >
+  </div>
+
+  <!-- ── Card Grid ──────────────────────────────────────────── -->
+  <main>
+    <div id="card-grid" class="card-grid"></div>
+    <div id="no-results" class="no-results" style="display:none">
+      <div class="emoji">🔍</div>
+      <p>No weeds found.<br>Try a different search.</p>
+    </div>
+    <div class="grid-footer">Tap any card to learn more</div>
+  </main>
+
+  <!-- ── Modal Overlay ──────────────────────────────────────── -->
+  <div id="modal-overlay" class="modal-overlay" aria-hidden="true"></div>
+
+  <!-- ── Modal Sheet ────────────────────────────────────────── -->
+  <div
+    id="modal-sheet"
+    class="modal-sheet"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Weed detail"
+  >
+    <div class="modal-drag-bar"></div>
+
+    <!-- Hero Carousel (populated by app.js) -->
+    <div id="modal-hero" class="modal-hero"></div>
+
+    <!-- Scrollable Body -->
+    <div id="modal-body" class="modal-body"></div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
