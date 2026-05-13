@@ -1,6 +1,6 @@
 # Pocket Weed Almanac
 
-A mobile-first web app for identifying and learning about 20 common backyard weeds found in Connecticut. Look up any plant to get identification tips, find out if it's edible or medicinal, understand what its presence tells you about your soil, and learn the best methods to control it.
+A mobile-first web app for identifying and learning about common backyard weeds found in Connecticut. Look up any plant to get identification tips, find out if it's edible or medicinal, understand what its presence tells you about your soil, and learn the best methods to control it. Access site here: <https://ty10y.github.io/Pocket-Weed-Almanac/>
 
 ---
 
